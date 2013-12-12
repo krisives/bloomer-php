@@ -31,13 +31,13 @@ SHA256 crytpographic hashes.
 
 * After including "bloomer.js" create an instance:
 
-     var bloomer = new Bloomer();
+        var bloomer = new Bloomer();
 
 * Feed the data into the Javascript object
 
-    bloomer.setHex($('#bloomhex').val()); // Data from a DOM node
+        bloomer.setHex($('#bloomhex').val()); // Data from a DOM node
 
 * Check if a string is in the bloom filter
 
-    if (bloomer.check("test")) {
+        if (bloomer.check("test")) {
 
