@@ -93,25 +93,33 @@ class Bloomer {
 		$this->elementCount++;
 	}
 	
+	/** Adds a hash (of any length) to the bloom filter. This doesn't increase the element
+	*** count or check for uniques, but does return the bit in the bloom filter that was set */
 	public function addHash($hash) {
 		$len = strlen($hash);
-		$value = 0;
+		
+		// Start with an empty 32-bit number of which bit to set in the bloom filter
+		$bit = 0;
 		
 		// Break the hash into pieces of 8 characters (32-bits)
 		for ($i=0; $i < $len; $i += 8) {
+			// Grab part of the hash and get a 32-bit number
 			$piece = hexdec(substr($hash, $i, 8)) & 0xFFFFFFF;
 			
-			// XOR preserves distribution and the resulting 32-bit integer
-			// should be sufficient for indexing the bitmap up to 4GB
-			$value = ($value ^ $piece) & 0xFFFFFFF;
+			// XOR together the pieces of the hash. This should preserve uniform
+			// distribution for bloom filters up to 4Gbits in size
+			$bit = ($bit ^ $piece) & 0xFFFFFFF;
 		}
 		
 		// Limit the range of the value so we can use it as an index
 		// (Should preserve unifirm distribution as long as bitCount is a power of two)
-		$value = abs($value % $this->bitCount);
+		$bit = abs($bit % $this->bitCount);
 		
-		$this->bits[$value] = 1;
-		return $value;
+		// Set the bit in the bloom filter
+		$this->bits[$bit] = 1;
+		
+		// Return which bit was set
+		return $bit;
 	}
 	
 	public function getBits() {
