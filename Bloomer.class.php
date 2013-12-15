@@ -118,12 +118,15 @@ class Bloomer {
 		return $this->bits;
 	}
 	
+	/** Gets the bits of the bloom filter encoded in hexidecimal */
 	public function getHex() {
 		$hex = '';
 		
+		// Process the bits in 32-bit chunks
 		for ($i=0; $i < $this->bitCount; $i += 32) {
 			$value = 0;
 			
+			// OR together all of the bits in this 32-bit word
 			for ($j=0; $j < 32; $j++) {
 				$bit = $this->bits[$i + $j];
 				
@@ -132,6 +135,7 @@ class Bloomer {
 				}
 			}
 			
+			// Padding to the left fills empty bits
 			$hex .= str_pad(dechex($value), 8, '0', STR_PAD_LEFT);
 		}
 		
