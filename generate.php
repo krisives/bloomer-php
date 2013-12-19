@@ -11,6 +11,9 @@ $bloomer = new Bloomer(array(
 
 array_shift($argv);
 
+// For debugging purposes any other arguments passed to the generate.php script
+// are added to the filter and their hash bits are displayed to STDOUT (this makes
+// debugging easier)
 foreach ($argv as $arg) {
 	$bit = $bloomer->addHash(md5($arg));
 	echo "$arg = $bit\n";
