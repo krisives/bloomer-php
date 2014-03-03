@@ -1,4 +1,6 @@
  
+ *Note: If you're looking for the NodeJS module go to https://github.com/krisives/bloomer*
+ 
      ____ ____ ____ ____ ____ ____ ____ 
     ||B |||l |||o |||o |||m |||e |||r ||
     ||__|||__|||__|||__|||__|||__|||__||
