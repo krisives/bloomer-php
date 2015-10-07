@@ -10,7 +10,7 @@
 ## What is Bloomer?
 
 Bloomer is a utility library to help website authors guide their
-users into picking better passwords. It generates a [Bloom Filter](http://en.wikipedia.org/wiki/Bloom_filter) of comprimised passwords,
+users into picking better passwords. It generates a [Bloom Filter](http://en.wikipedia.org/wiki/Bloom_filter) of compromised passwords,
 which are obtained from public security lists on the Internet.
 
 The password lists used by Bloomer do not contain identifiable user information, such as
